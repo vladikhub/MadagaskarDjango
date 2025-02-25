@@ -19,6 +19,8 @@ def login_user(request):
     else:
         form = LoginUserForm()
     return render(request, 'users/index.html', {'form': form})
+
+
 # Create your views here.
 
 '''
