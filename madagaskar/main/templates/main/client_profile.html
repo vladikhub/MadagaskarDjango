@@ -1,0 +1,29 @@
+
+<!Doctype html>
+{% extends 'main/layout.html' %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title%} Профиль {% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+        <h1>{{person.surname}}  {{person.name}}</h1>
+        <p class="person-info">{% if person.num == None%}
+            Абонемент: Нет
+            {%else%}
+            Абонемент: {{person.num}}
+            {%endif%}
+        </p>
+        <div class="add">
+            <a href=""><button class="btn btn-success">Добавить запись</button></a>
+            <a href=""><button class="btn btn-light">Редактировать профиль</button></a>
+            <a href=""><button class="btn btn-info">Посмотреть все записи</button></a>
+        </div>
+
+    {% endblock %}
+</body>
+</html>
