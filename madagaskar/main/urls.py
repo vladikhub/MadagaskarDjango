@@ -1,0 +1,11 @@
+
+from django.urls import path
+from . import views
+
+
+app_name="main"
+
+urlpatterns = [
+    path('add-client/', views.add_client, name='add-client'),
+
+]

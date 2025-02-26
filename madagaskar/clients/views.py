@@ -18,7 +18,7 @@ def login_user(request):
                 return HttpResponseRedirect(reverse('home'))
     else:
         form = LoginUserForm()
-    return render(request, 'users/index.html', {'form': form})
+    return render(request, 'clients/index.html', {'form': form})
 
 
 # Create your views here.

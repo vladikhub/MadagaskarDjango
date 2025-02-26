@@ -1,7 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from users.models import Client
+from clients.models import Client
+from .forms import CreateClientForm
 
 # Create your views here.
 
@@ -14,7 +15,7 @@ def start_page(request):
         else:
             return HttpResponseRedirect(reverse('client'))
     else:
-        return HttpResponseRedirect(reverse('users:login'))
+        return HttpResponseRedirect(reverse('clients:login'))
 
 def show_client_page(request):
     client = Client.objects.get(user=request.user)
@@ -24,4 +25,35 @@ def show_client_page(request):
         'subscription': client.subscription
             }
 
-    return render(request, "users/client_page.html", info)
+    return render(request, "clients/client_page.html", info)
+
+def show_staff_page(request):
+    return render(request, "main/layout.html")
+
+def add_client(request):
+    clients = Client.objects.all()
+    info = {}
+    if request.method == "POST":
+        form = CreateClientForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            phone = form.cleaned_data["phone"]
+
+            info["form"] = form
+            print(clients)
+            if phone in [client.phone for client in clients]:
+                info['error'] = "Пользователь с таким номером телефона уже существует"
+                return render(request, "main/add-client.html", info)
+
+            Client.objects.create(name=name, phone=phone, subscription=None)
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            print("Пиздец")
+    else:
+        form =CreateClientForm()
+        info['form'] = form
+        return render(request, "main/add_client.html", info)
+
+
+
+
