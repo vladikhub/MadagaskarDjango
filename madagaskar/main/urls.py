@@ -7,5 +7,5 @@ app_name="main"
 
 urlpatterns = [
     path('add-client/', views.add_client, name='add-client'),
-    # path('update-client/', views.)
+    path('client-info/<int:client_id>', views.client_info, name='client-info')
 ]

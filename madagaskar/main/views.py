@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from clients.models import Client
 from .forms import CreateClientForm
+
+"Номер абонемента добавляется макс + 1"
 
 # Create your views here.
 
@@ -34,26 +36,35 @@ def show_staff_page(request):
 def add_client(request):
     clients = Client.objects.all()
     info = {}
+    sub_num = None
     if request.method == "POST":
         form = CreateClientForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data["name"]
             phone = form.cleaned_data["phone"]
+            number_min = form.cleaned_data["number_min"]
 
             info["form"] = form
-            print(clients)
+
             if phone in [client.phone for client in clients]:
                 info['error'] = "Пользователь с таким номером телефона уже существует"
                 return render(request, "main/add_client.html", info)
 
-            Client.objects.create(name=name, phone=phone, subscription=None)
-            return HttpResponseRedirect(reverse('home'))
+            if number_min:
+                sub_num = max([client.subscription for client in clients]) + 1
+
+            Client.objects.create(name=name, phone=phone, subscription=sub_num)
+            client = Client.objects.get(phone=phone)
+            return redirect('main:client-info', client_id=client.id)
+        else:
+            print(form.errors)
     else:
         form =CreateClientForm()
         info['form'] = form
         return render(request, "main/add_client.html", info)
 
 @login_required
-def update_client(request):
-    pass
+def client_info(request, client_id):
+    client = Client.objects.get(id=client_id)
+    return render(request, "main/client_info.html")
 

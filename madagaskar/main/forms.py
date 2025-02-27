@@ -9,7 +9,7 @@ class DemoSplitPhoneNumberField(SplitPhoneNumberField):
         ], widget=forms.Select(attrs={'style': "width: 50px; height: 40px; border-radius: 20%;"}))
     def number_field(self):
         return forms.CharField(
-        widget=forms.TextInput(attrs={"pattern": "[0-9]{3}[0-9]{3}[0-9]{4}", 'style': "width: 180px; height: 40px; border-radius: 10%;"}))
+        widget=forms.TextInput(attrs={'style': "width: 180px; height: 40px; border-radius: 10%;"}))
 
 
 class CreateClientForm(forms.Form):
