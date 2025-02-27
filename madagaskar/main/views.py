@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -6,8 +7,6 @@ from .forms import CreateClientForm
 
 # Create your views here.
 
-
-
 def start_page(request):
     if request.user.is_authenticated:
         if request.user.is_staff:
@@ -15,7 +14,8 @@ def start_page(request):
         else:
             return HttpResponseRedirect(reverse('client'))
     else:
-        return HttpResponseRedirect(reverse('clients:login'))
+        return HttpResponseRedirect(reverse('users:login'))
+
 
 def show_client_page(request):
     client = Client.objects.get(user=request.user)
@@ -30,6 +30,7 @@ def show_client_page(request):
 def show_staff_page(request):
     return render(request, "main/layout.html")
 
+@login_required
 def add_client(request):
     clients = Client.objects.all()
     info = {}
@@ -47,12 +48,12 @@ def add_client(request):
 
             Client.objects.create(name=name, phone=phone, subscription=None)
             return HttpResponseRedirect(reverse('home'))
-
     else:
         form =CreateClientForm()
         info['form'] = form
         return render(request, "main/add_client.html", info)
 
-
-
+@login_required
+def update_client(request):
+    pass
 

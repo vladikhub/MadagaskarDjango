@@ -76,6 +76,7 @@ select {
 }
 
 .add-client {
+    
     margin-left: 50%;
     transform: translateX(-50%);
     width: 20%;
@@ -114,6 +115,7 @@ select {
 .form-text {
     color: #999594;
 }
+
 
 .reg {
     color: #fff;
