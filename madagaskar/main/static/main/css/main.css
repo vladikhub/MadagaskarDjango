@@ -2,6 +2,7 @@ body{
     background: #2c2c2c;
 }
 
+
 aside {
     float: left;
     width: 20%;
@@ -16,7 +17,6 @@ aside img{
     width: 120px;
     float: left;
 }
-
 aside .logo{
     font-size: 35px;
     margin-left: 20px;
@@ -69,6 +69,50 @@ main {
     text-align: center;
     width: 75%;
     margin-top: 100px;
+}
+
+select {
+    width: 50px;
+}
+
+.add-client {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 20%;
+
+}
+
+.form-label {
+    float: left;
+    font-size: 20px;
+}
+
+.phone-number-container {
+    display: flex;
+    flex-direction: column; /* Элементы будут располагаться вертикально */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Отступ между группами полей */
+}
+
+.form-group label {
+    display: block; /* Метка занимает всю ширину контейнера */
+    margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+    text-align: left; /* Выравнивание текста по левому краю */
+    margin-left: 40%;
+    font-size: 20px;
+}
+
+.form-check {
+    margin-top: 1%;
+    margin-left: 50%;
+        transform: translateX(-50%);
+        width: 20%;
+}
+
+.form-text {
+    color: #999594;
 }
 
 .reg {

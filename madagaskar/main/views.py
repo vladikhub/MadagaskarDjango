@@ -43,12 +43,11 @@ def add_client(request):
             print(clients)
             if phone in [client.phone for client in clients]:
                 info['error'] = "Пользователь с таким номером телефона уже существует"
-                return render(request, "main/add-client.html", info)
+                return render(request, "main/add_client.html", info)
 
             Client.objects.create(name=name, phone=phone, subscription=None)
             return HttpResponseRedirect(reverse('home'))
-        else:
-            print("Пиздец")
+
     else:
         form =CreateClientForm()
         info['form'] = form

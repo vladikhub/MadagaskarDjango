@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'clients',
     'phonenumber_field',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
