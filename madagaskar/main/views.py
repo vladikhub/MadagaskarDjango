@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from clients.models import Client
+from clients.models import Subscription
 from .forms import CreateClientForm
 
 "Номер абонемента добавляется макс + 1"
@@ -35,8 +36,10 @@ def show_staff_page(request):
 @login_required
 def add_client(request):
     clients = Client.objects.all()
+    subscriptions = Subscription.objects.all()
+
     info = {}
-    sub_num = None
+    subscription = None
     if request.method == "POST":
         form = CreateClientForm(request.POST)
         if form.is_valid():
@@ -51,9 +54,11 @@ def add_client(request):
                 return render(request, "main/add_client.html", info)
 
             if number_min:
-                sub_num = max([client.subscription for client in clients]) + 1
+                sub_num = max([subscription.number for subscription in subscriptions]) + 1
+                Subscription.objects.create(number=sub_num, minutes=number_min)
+                subscription = Subscription.objects.get(number=sub_num)
 
-            Client.objects.create(name=name, phone=phone, subscription=sub_num)
+            Client.objects.create(name=name, phone=phone, subscription=subscription)
             client = Client.objects.get(phone=phone)
             return redirect('main:client-info', client_id=client.id)
         else:

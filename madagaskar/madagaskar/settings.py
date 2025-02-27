@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'main',
     'clients',
     'users',
+    'creams',
     'phonenumber_field',
     'widget_tweaks',
 ]
