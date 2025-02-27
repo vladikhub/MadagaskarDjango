@@ -1,22 +1,4 @@
-
-<!Doctype html>
 {% extends 'main/layout.html' %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% block title%} Главная страница{% endblock %}
-</head>
-<body>
-    {% block content%}
-        <h1>Телефон клиента</h1>
-        <form class="phone-form" action="{% url 'profile' %}" method="POST">
-            {% csrf_token %}
-            <input type="text" placeholder="Номер телефона" class="form-control" name="phone">
-            <button class="btn btn-success" type="submit">Проверить</button>
-        </form><br>
-    {% endblock %}
-</body>
-</html>
+
+{% block side_bar %}{{ block.super }}{% endblock %}
+{% block content %}{{ block.super }}{% endblock %}

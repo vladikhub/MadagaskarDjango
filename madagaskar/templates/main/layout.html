@@ -13,22 +13,23 @@
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 </head>
 <body>
-    <aside>
-        <img src="{% static 'main/img/madagaskar.jpg'%}" alt="Мадагаскар">
-        <span class="logo">Madagaskar</span>
-        <h3>Навигация</h3>
-        <ul>
-            <a href=""><li><i class="bi bi-house-heart"></i> Главная</li></a>
-            <a href="add-client/"><li><i class="bi bi-person-add"></i> Добавить клиента </li></a>
-            <a href=""><li><i class="bi bi-telephone"></i> Контакты</li></a>
+    {% block side_bar %}
+        <aside>
+            <img src="{% static 'main/img/madagaskar.jpg'%}" alt="Мадагаскар">
+            <span class="logo">Madagaskar</span>
+            <h3>Навигация</h3>
+            <ul>
+                <a href="/"><li><i class="bi bi-house-heart"></i> Главная</li></a>
+                <a href="add-client/"><li><i class="bi bi-person-add"></i> Добавить клиента </li></a>
+                <a href=""><li><i class="bi bi-telephone"></i> Контакты</li></a>
 
-        </ul>
-    </aside>
-    <main>
-        {% block content %}
-        {% endblock %}
+            </ul>
+        </aside>
+    {% endblock %}
 
-    </main>
+    {% block content %}
+
+    {% endblock %}
 
 </body>
 </html>

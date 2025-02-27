@@ -13,7 +13,7 @@ from .forms import CreateClientForm
 def start_page(request):
     if request.user.is_authenticated:
         if request.user.is_staff:
-            return render(request, "main/layout.html")
+            return render(request, "main/home.html")
         else:
             return HttpResponseRedirect(reverse('client'))
     else:
@@ -31,7 +31,7 @@ def show_client_page(request):
     return render(request, "clients/client_page.html", info)
 
 def show_staff_page(request):
-    return render(request, "main/layout.html")
+    return render(request, "main/home.html")
 
 @login_required
 def add_client(request):
@@ -71,5 +71,6 @@ def add_client(request):
 @login_required
 def client_info(request, client_id):
     client = Client.objects.get(id=client_id)
-    return render(request, "main/client_info.html")
+    context = {"client": client, "subscription": client.subscription}
+    return render(request, "main/client_info.html", context)
 

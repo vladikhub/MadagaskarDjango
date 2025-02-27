@@ -2,6 +2,9 @@ body{
     background: #2c2c2c;
 }
 
+.col-form-label{
+    font-size: 20px;
+}
 
 aside {
     float: left;
