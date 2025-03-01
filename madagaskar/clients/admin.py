@@ -4,7 +4,7 @@ from .models import Client, Subscription
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone', 'subscription')
+    list_display = ('id', 'name', 'phone', 'subscription')
 
 @admin.register(Subscription)
 class ClientAdmin(admin.ModelAdmin):

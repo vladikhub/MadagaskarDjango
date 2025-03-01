@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from clients.models import Client
 from clients.models import Subscription
 from .forms import CreateClientForm
 
-"Номер абонемента добавляется макс + 1"
+
 
 # Create your views here.
 
@@ -70,7 +70,54 @@ def add_client(request):
 
 @login_required
 def client_info(request, client_id):
-    client = Client.objects.get(id=client_id)
+    client = get_object_or_404(Client, id=client_id)
     context = {"client": client, "subscription": client.subscription}
     return render(request, "main/client_info.html", context)
+
+@login_required
+def update_client(request, client_id):
+    client = get_object_or_404(Client, id=client_id)
+    info = {}
+    if request.method == "POST":
+        form = CreateClientForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            phone = form.cleaned_data["phone"]
+            number_min = form.cleaned_data["number_min"]
+
+            info["form"] = form
+
+            if name != client.name:
+                client.name = name
+
+            if phone != client.phone:
+                clients = Client.objects.all()
+                if phone in [client.phone for client in clients]:
+                    info['error'] = "Пользователь с таким номером телефона уже существует"
+                    return render(request, "main/update_client.html", info)
+
+                client.phone = phone
+
+            if not client.subscription and number_min:
+                subscriptions = Subscription.objects.all()
+                sub_num = max([subscription.number for subscription in subscriptions]) + 1
+                Subscription.objects.create(number=sub_num, minutes=number_min)
+                subscription = Subscription.objects.get(number=sub_num)
+                client.subscription = subscription
+
+            elif number_min != client.subscription.minutes:
+                client.subscription.minutes = number_min
+
+            client.save()
+            client.subscription.save()
+            return redirect('main:client-info', client_id=client.id)
+    else:
+        form = CreateClientForm()
+        info['form'] = form
+        info['client'] = client
+        info['phone'] = str(client.phone)[2:]
+        return render(request, "main/update_client.html", info)
+
+def page_not_found(request, exception):
+    return HttpResponseNotFound("<h1>Страница не найдена</h1>")
 

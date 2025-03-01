@@ -16,4 +16,7 @@ class CreateClientForm(forms.Form):
     name = forms.CharField(label="Имя",
                            widget=forms.TextInput(attrs={'class': 'form-input'}))
     phone = DemoSplitPhoneNumberField(label="Номер телефона", region="RU")
-    number_min = forms.IntegerField(label="Количество минут", required=False, help_text="Введите количество минут, если клиент приобретает абонемент")
+    number_min = forms.IntegerField(label="Количество минут",
+                                    required=False,
+                                    help_text="Введите количество минут, если клиент приобретает абонемент")
+

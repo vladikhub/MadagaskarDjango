@@ -1,0 +1,39 @@
+{% extends 'main/layout.html' %}
+
+{% block side_bar %}{{ block.super }}{% endblock %}
+
+ {% block content %}
+    <main>
+        {% load widget_tweaks %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3 add-client">
+                <label class="form-label">Имя: </label>
+                {% render_field form.name class="form-control" value=client.name%}
+            </div>
+
+            <div class="phone-number-container">
+                <div class="form-group">
+                    <label>Номер телефона:</label>
+                    {% render_field form.phone value=phone %}
+                    {% if error %}
+                    <p class="form-text">{{ error }}</p>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <div class="mb-3 add-client">
+                <label class="form-label">Количество минут:</label>
+                {% render_field form.number_min class="form-control" aria-describedby="numberHelpBlock" value=client.subscription.minutes%}
+                <div id="numberHelpBlock" class="form-text">
+                    {{ form.number_min.help_text }}
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-success">Добавить</button>
+        </form>
+    </main>
+{% endblock %}

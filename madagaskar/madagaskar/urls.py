@@ -26,3 +26,5 @@ urlpatterns = [
     path('client/', views.show_client_page, name="client"),
 
 ]
+
+handler404 = views.page_not_found

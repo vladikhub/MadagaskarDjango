@@ -36,7 +36,7 @@
 
         <div class="add">
             <a href=""><button class="btn btn-success">Добавить запись</button></a>
-            <a href=""><button class="btn btn-light">Редактировать профиль</button></a>
+            <a href="{% url 'main:update-client' client.id %}"><button class="btn btn-light">Редактировать профиль</button></a>
             <a href=""><button class="btn btn-info">Посмотреть все записи</button></a>
         </div>
     </main>
