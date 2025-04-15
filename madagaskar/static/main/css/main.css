@@ -7,6 +7,8 @@ body{
 }
 
 aside {
+
+
     float: left;
     width: 20%;
     background: #181818;
@@ -14,6 +16,8 @@ aside {
     padding: 1.5%;
     color: #fff;
     border-right: 5px solid #005e03;
+    position: fixed;
+
 }
 
 aside img{
@@ -66,47 +70,22 @@ aside ul li:hover, aside ul a:hover{
     text-decoration: none;
     transform: scale(1.05);
 }
-main {
-    color: #fff;
-    float: left;
-    text-align: center;
-    width: 75%;
-    margin-top: 100px;
-}
+
 
 select {
     width: 50px;
 }
 
-.add-client {
-
-    margin-left: 50%;
-    transform: translateX(-50%);
-    width: 20%;
-
-}
 
 .form-label {
-    float: left;
     font-size: 20px;
-}
-
-.phone-number-container {
-    display: flex;
-    flex-direction: column; /* Элементы будут располагаться вертикально */
+    margin-right: 10%;
 }
 
 .form-group {
     margin-bottom: 15px; /* Отступ между группами полей */
 }
 
-.form-group label {
-    display: block; /* Метка занимает всю ширину контейнера */
-    margin-bottom: 5px; /* Отступ между меткой и полем ввода */
-    text-align: left; /* Выравнивание текста по левому краю */
-    margin-left: 40%;
-    font-size: 20px;
-}
 
 .form-check {
     margin-top: 1%;
@@ -127,26 +106,12 @@ select {
     font-size: 25px;
 }
 
-.number{
-    font-size: 25px;
-    margin-top: 35px;
-}
-.btn-success{
-    margin-top: 35px;
-}
-.phone-form{
-    margin-left: 37%;
-    width: 300px;
-    margin-top: 50px;
-}
 
 .header{
     color:#fff;
 }
 
-.btn-info{
-    margin-left: 50%;
-}
+
 .person-info{
 
     margin-top: 100px;
@@ -154,6 +119,146 @@ select {
     font-size: 25px;
 
 }
+
 .add{
-    margin-top: 200px;
+    margin-top: 10%; /* Отступ сверху */
+    display: flex; /* Делаем контейнер flex */
+    gap: 10px; /* Расстояние между кнопками */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.client-container {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.9s;
+}
+.client-container:hover {
+    background-color: #f5f5f5;
+    color: #181818;
+}
+.client-info {
+    display: flex;
+    justify-content: space-between;
+}
+.client-name {
+    font-weight: bold;
+}
+
+main.home {
+    margin-left: 20%;
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center;
+    color: white;
+}
+
+main.client-info-form {
+    margin-left: 20%; /* Отступ = ширине aside */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.client-form-container {
+/* Опционально: ограничиваем ширину формы */
+    margin: 40px auto 0; /* 40px отступ сверху + выравнивание по центру */
+    padding: 20px;
+
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+    max-width: 1000px;
+}
+
+main.update-clients {
+    margin-left: 20%; /* Сдвигаем вправо на ширину aside */
+    padding: 20px;
+    width: 80%; /* Занимаем оставшееся пространство */
+    box-sizing: border-box;
+}
+
+.update-container {
+    max-width: 600px; /* Ограничиваем ширину формы */
+    margin: 0 auto;
+    color: white;
+}
+
+main.add-clients {
+    margin-left: 20%; /* Сдвигаем вправо на ширину aside */
+    padding: 20px;
+    width: 80%; /* Занимаем оставшееся пространство */
+    box-sizing: border-box;
+}
+
+.add-container {
+    max-width: 600px; /* Ограничиваем ширину формы */
+    margin: 0 auto;
+    color: white;
+}
+
+.all_clients-container{
+    margin-top: 20px;
+}
+
+.search-form {
+    display: flex;
+    border: 3px solid #014003;
+    border-radius: 50px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-form input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-form button {
+    background: #014003;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background: #014203;
+}
+
+.client-search-container {
+    margin-left: 20%;
+    padding-top: 20px;
+
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.btn-primary {
+    background: #005e03;
+    border-color: #005e03;
+}
+
+.btn-primary:hover {
+    background: #014f03;
+    border-color: #014f03;
+    transition: transform .4s ease;
+}
+
+.btn-primary:active {
+    background: #014f03;
+    border-color: #014f03;
+    transition: transform .4s ease;
 }

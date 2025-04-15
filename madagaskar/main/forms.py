@@ -20,3 +20,23 @@ class CreateClientForm(forms.Form):
                                     required=False,
                                     help_text="Введите количество минут, если клиент приобретает абонемент")
 
+class UpdateClientForm(forms.Form):
+    TIME_PERIOD_CHOICES = [
+        ('None', ''),
+        ('Месяц', 'Месяц'),
+        ('Полгода', 'Полгода'),
+        ('Год', 'Год'),
+    ]
+
+    name = forms.CharField(label="Имя",
+                           widget=forms.TextInput(attrs={'class': 'form-input'}))
+    phone = DemoSplitPhoneNumberField(label="Номер телефона", region="RU")
+    number_min = forms.IntegerField(label="Количество минут",
+                                    required=False,
+                                    help_text="Введите количество минут, если клиент приобретает абонемент")
+    time_period = forms.ChoiceField(
+        choices=TIME_PERIOD_CHOICES,
+        label='Выберите период времени',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+

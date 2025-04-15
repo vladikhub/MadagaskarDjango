@@ -3,20 +3,20 @@
 {% block side_bar %}{{ block.super }}{% endblock %}
 
  {% block content %}
-    <main>
+    <main class="update-clients">
         {% load widget_tweaks %}
-
-        <form method="POST">
+        <div class="update-container">
+            <form method="POST">
             {% csrf_token %}
             <div class="mb-3 add-client">
                 <label class="form-label">Имя: </label>
-                {% render_field form.name class="form-control" %}
+                {% render_field form.name class="form-control" value=client.name%}
             </div>
 
             <div class="phone-number-container">
-                <div class="form-group">
-                    <label>Номер телефона:</label>
-                    {% render_field form.phone %}
+                <div class="form-group phone">
+                    <label class="form-label">Номер телефона:</label>
+                    {% render_field form.phone value=phone %}
                     {% if error %}
                     <p class="form-text">{{ error }}</p>
                     {% endif %}
@@ -26,14 +26,23 @@
 
             <div class="mb-3 add-client">
                 <label class="form-label">Количество минут:</label>
-                {% render_field form.number_min class="form-control" aria-describedby="numberHelpBlock" %}
+                {% render_field form.number_min class="form-control" aria-describedby="numberHelpBlock" value=client.subscription.minutes%}
                 <div id="numberHelpBlock" class="form-text">
                     {{ form.number_min.help_text }}
                 </div>
+            </div>
 
+            <div class="mb-3 add-client">
+                <label class="form-label">Период абонемента:</label>
+                {% render_field form.time_period class="form-control" %}
+                <div id="period" class="form-text">
+                    {{ form.time_period.help_text }}
+                </div>
             </div>
 
             <button type="submit" class="btn btn-success">Добавить</button>
         </form>
+        </div>
+
     </main>
 {% endblock %}

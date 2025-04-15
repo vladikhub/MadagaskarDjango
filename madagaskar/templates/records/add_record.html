@@ -1,0 +1,53 @@
+{% extends 'main/layout.html' %}
+
+{% block side_bar %}{{ block.super }}{% endblock %}
+
+ {% block content %}
+    <main class="add-clients">
+      {% load widget_tweaks %}
+        <div class="add-container">
+
+        <form method="post" class="p-4" style="max-width: 600px; margin: auto;">
+        {% csrf_token %}
+
+            <div class="mb-3 add-record">
+                <label class="form-label">По абонементу: </label>
+                {% render_field form.by_subscription class="form-control" %}
+            </div>
+            <div class="mb-3 add-client">
+                <label class="form-label">Крем: </label>
+                {% render_field form.cream class="form-control" %}
+            </div>
+
+            <div class="mb-3 add-record">
+                <label class="form-label">Вес: </label>
+                {% render_field form.weight class="form-control" %}
+            </div>
+
+            <div class="mb-3 add-record">
+                <label class="form-label">Скидка: </label>
+                {% render_field form.discount class="form-control" %}
+            </div>
+
+            <div class="mb-3 add-record">
+                <label class="form-label">Тип кабины: </label>
+                {% render_field form.tanning_booth  class="form-control" %}
+            </div>
+
+            <div class="mb-3 add-record">
+                <label class="form-label">Количество минут: </label>
+                {% render_field form.minutes   class="form-control" %}
+            </div>
+            <div class="form-btn">
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </div>
+
+          </form>
+        </div>
+
+
+
+
+
+    </main>
+{% endblock %}

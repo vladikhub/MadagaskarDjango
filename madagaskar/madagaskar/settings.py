@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'clients',
     'users',
     'creams',
+    'subscriptions',
+    'records',
     'phonenumber_field',
     'widget_tweaks',
 ]

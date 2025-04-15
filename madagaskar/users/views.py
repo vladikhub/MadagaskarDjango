@@ -19,7 +19,7 @@ def login_user(request):
                                 password=cd['password'])
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('home'))
+                return HttpResponseRedirect(reverse('main:home'))
     else:
         form = LoginUserForm()
-    return render(request, 'clients/index.html', {'form': form})
+    return render(request, 'main/index.html', {'form': form})

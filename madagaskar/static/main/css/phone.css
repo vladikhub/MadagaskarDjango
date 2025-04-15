@@ -1,0 +1,17 @@
+.number{
+    font-size: 25px;
+    margin-top: 35px;
+}
+
+.phone-form{
+    margin-left: 37%;
+    width: 300px;
+    margin-top: 50px;
+}
+.form-group label {
+    display: block; /* Метка занимает всю ширину контейнера */
+    margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+    text-align: left; /* Выравнивание текста по левому краю */
+    margin-left: 40%;
+    font-size: 20px;
+}

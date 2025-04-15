@@ -15,12 +15,12 @@
 <body>
     {% block side_bar %}
         <aside>
-            <img src="{% static 'main/img/madagaskar.jpg'%}" alt="Мадагаскар">
+            <a href="/home/"><img src="{% static 'main/img/madagaskar.jpg'%}" alt="Мадагаскар"></a>
             <span class="logo">Madagaskar</span>
             <h3>Навигация</h3>
             <ul>
-                <a href="/"><li><i class="bi bi-house-heart"></i> Главная</li></a>
-                <a href="/add-client/"><li><i class="bi bi-person-add"></i> Добавить клиента </li></a>
+                <a href="/home/"><li><i class="bi bi-house-heart"></i> Главная</li></a>
+                <a href="{% url 'clients:add-client' %}"><li><i class="bi bi-person-add"></i> Добавить клиента </li></a>
                 <a href=""><li><i class="bi bi-telephone"></i> Контакты</li></a>
 
             </ul>
